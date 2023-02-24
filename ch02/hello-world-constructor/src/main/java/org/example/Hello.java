@@ -10,4 +10,12 @@ public class Hello {
     public String hello() {
         return "Hello World! by " + name;
     }
+
+
+    @Override
+    public String toString() {
+        return "Hello{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

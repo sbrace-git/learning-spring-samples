@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="hello-1" class="org.example.Hello" autowire-candidate="false">
+        <constructor-arg value="Spring-1"/>
+    </bean>
+
+    <bean id="hello-2" class="org.example.Hello">
+        <constructor-arg value="Spring-2"/>
+    </bean>
+
+    <bean id="hello-3" class="org.example.Hello" primary="true">
+        <constructor-arg value="Spring-3"/>
+    </bean>
+
+    <bean id="helloBox" class="org.example.HelloBox" autowire="byType" depends-on="hello-1,hello-2,hello-3">
+        <property name="refHello" ref="hello-1"/>
+
+        <property name="nameList">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
