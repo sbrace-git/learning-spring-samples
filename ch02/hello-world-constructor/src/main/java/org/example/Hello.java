@@ -11,6 +11,9 @@ public class Hello {
         return "Hello World! by " + name;
     }
 
+    public static Hello create(String name) {
+        return new Hello(name);
+    }
 
     @Override
     public String toString() {

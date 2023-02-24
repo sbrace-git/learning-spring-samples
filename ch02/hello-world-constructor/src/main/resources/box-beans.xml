@@ -9,7 +9,7 @@
         <constructor-arg value="Spring-1"/>
     </bean>
 
-    <bean id="hello-2" class="org.example.Hello">
+    <bean id="hello-2" class="org.example.HelloFactory" factory-method="create">
         <constructor-arg value="Spring-2"/>
     </bean>
 
