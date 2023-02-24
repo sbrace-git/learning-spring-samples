@@ -9,6 +9,10 @@ public class HelloBox {
     private List<Hello> helloList;
     private List<String> nameList;
 
+    public HelloBox() {
+        System.out.println("create HelloBox");
+    }
+
     @Override
     public String toString() {
         return "HelloBox{" +

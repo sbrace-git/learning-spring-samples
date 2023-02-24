@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="hello-1" class="org.example.Hello" autowire-candidate="false">
+    <bean id="hello-1" class="org.example.Hello" autowire-candidate="false" lazy-init="false">
         <constructor-arg value="Spring-1"/>
     </bean>
 
@@ -17,7 +17,8 @@
         <constructor-arg value="Spring-3"/>
     </bean>
 
-    <bean id="helloBox" class="org.example.HelloBox" autowire="byType" depends-on="hello-1,hello-2,hello-3">
+    <bean id="helloBox" class="org.example.HelloBox" autowire="byType" depends-on="hello-1,hello-2,hello-3"
+          lazy-init="true">
         <property name="refHello" ref="hello-1"/>
         <property name="nullHello">
             <null/>

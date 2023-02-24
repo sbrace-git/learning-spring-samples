@@ -4,6 +4,7 @@ public class Hello {
     private final String name;
 
     public Hello(String name) {
+        System.out.println("create " + name + " @" + Integer.toHexString(hashCode()));
         this.name = name;
     }
 
