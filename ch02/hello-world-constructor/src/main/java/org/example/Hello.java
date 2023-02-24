@@ -17,7 +17,7 @@ public class Hello {
 
     @Override
     public String toString() {
-        return super.toString() + " Hello {" +
+        return "@" + Integer.toHexString(hashCode()) + " Hello {" +
                 "name='" + name + '\'' +
                 '}';
     }
