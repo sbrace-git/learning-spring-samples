@@ -17,7 +17,7 @@ public class Hello {
 
     @Override
     public String toString() {
-        return "Hello{" +
+        return super.toString() + " Hello {" +
                 "name='" + name + '\'' +
                 '}';
     }

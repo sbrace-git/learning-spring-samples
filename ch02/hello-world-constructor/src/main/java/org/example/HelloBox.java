@@ -12,11 +12,11 @@ public class HelloBox {
     @Override
     public String toString() {
         return "HelloBox{" +
-                "refHello=" + refHello +
-                ", nullHello=" + nullHello +
-                ", hello=" + hello +
-                ", helloList=" + helloList +
-                ", nameList=" + nameList +
+                "\n refHello=" + refHello +
+                ",\n nullHello=" + nullHello +
+                ",\n hello=" + hello +
+                ",\n helloList=" + helloList +
+                ",\n nameList=" + nameList +
                 '}';
     }
 
