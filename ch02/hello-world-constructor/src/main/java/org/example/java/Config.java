@@ -2,15 +2,13 @@ package org.example.java;
 
 import org.example.Hello;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 
 @Configuration
-//@ComponentScan("org.example.java")
+@ImportResource("classpath:beans.xml")
 public class Config {
 
+    @Primary
     @Bean
     @Lazy
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)

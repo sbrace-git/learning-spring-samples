@@ -32,5 +32,10 @@ public class Application {
         Bar baz = context.getBean("baz", Bar.class);
         System.out.println(baz);
 
+        System.out.println("=====================================================");
+        Hello hello = context.getBean("hello", Hello.class);
+        System.out.println(hello);
+        System.out.println(hello.hello());
+
     }
 }
