@@ -4,9 +4,21 @@ import java.util.List;
 
 public class HelloBox {
     private Hello refHello;
+    private Hello nullHello;
     private Hello hello;
     private List<Hello> helloList;
     private List<String> nameList;
+
+    @Override
+    public String toString() {
+        return "HelloBox{" +
+                "refHello=" + refHello +
+                ", nullHello=" + nullHello +
+                ", hello=" + hello +
+                ", helloList=" + helloList +
+                ", nameList=" + nameList +
+                '}';
+    }
 
     public Hello getRefHello() {
         return refHello;
@@ -14,6 +26,14 @@ public class HelloBox {
 
     public void setRefHello(Hello refHello) {
         this.refHello = refHello;
+    }
+
+    public Hello getNullHello() {
+        return nullHello;
+    }
+
+    public void setNullHello(Hello nullHello) {
+        this.nullHello = nullHello;
     }
 
     public Hello getHello() {
@@ -38,15 +58,5 @@ public class HelloBox {
 
     public void setNameList(List<String> nameList) {
         this.nameList = nameList;
-    }
-
-    @Override
-    public String toString() {
-        return "HelloBox{" +
-                "refHello=" + refHello +
-                ", hello=" + hello +
-                ", helloList=" + helloList +
-                ", nameList=" + nameList +
-                '}';
     }
 }

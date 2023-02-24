@@ -19,7 +19,9 @@
 
     <bean id="helloBox" class="org.example.HelloBox" autowire="byType" depends-on="hello-1,hello-2,hello-3">
         <property name="refHello" ref="hello-1"/>
-
+        <property name="nullHello">
+            <null/>
+        </property>
         <property name="nameList">
             <list>
                 <value>aaa</value>
