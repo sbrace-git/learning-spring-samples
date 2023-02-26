@@ -14,5 +14,14 @@ public class Application {
         applicationContext.close();
         System.out.println("hello is running " + hello.isRunning());
         System.out.println(hello.hello());
+
+        /*
+          Context Started.
+          hello is running true
+          Hello World!
+          Context Stopped.
+          hello is running false
+          Bye!
+         */
     }
 }
