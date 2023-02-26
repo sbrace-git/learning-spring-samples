@@ -4,13 +4,13 @@ import org.springframework.context.annotation.*;
 import org.springframework.core.env.ConfigurableEnvironment;
 
 @Configuration
-@ImportResource(value = {"classpath:beans.xml", "classpath:beans-prod.xml"})
+@ImportResource(value = {"classpath:beans-dev.xml", "classpath:beans-prod.xml"})
 public class Application {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
         ConfigurableEnvironment environment = annotationConfigApplicationContext.getEnvironment();
-        environment.setActiveProfiles("dev");
-//        environment.setActiveProfiles("prod");
+//        environment.setActiveProfiles("dev");
+        environment.setActiveProfiles("prod");
         annotationConfigApplicationContext.register(Application.class);
         annotationConfigApplicationContext.refresh();
         Hello hello = annotationConfigApplicationContext.getBean("hello-1", Hello.class);

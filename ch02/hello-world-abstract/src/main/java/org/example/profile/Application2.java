@@ -1,10 +1,9 @@
 package org.example.profile;
 
 import org.springframework.context.annotation.*;
-import org.springframework.core.env.ConfigurableEnvironment;
 
 @Configuration
-@ImportResource(value = {"classpath:beans.xml", "classpath:beans-prod.xml"})
+@ImportResource(value = {"classpath:beans-dev.xml", "classpath:beans-prod.xml"})
 public class Application2 {
     public static void main(String[] args) {
         /*
