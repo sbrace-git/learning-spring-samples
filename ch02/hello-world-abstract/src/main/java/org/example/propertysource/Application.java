@@ -16,7 +16,7 @@ public class Application {
 
         /*
             foo.bar = test
-            foo.bar = foo.bar
+            foo.bar = test
             foo.tar = default foo.tar value
         */
 

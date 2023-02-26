@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Hello2 {
-    @Value("foo.bar")
+    @Value("test")
     private String fooBar;
 
     @Value("${foo.tar:default foo.tar value}")
