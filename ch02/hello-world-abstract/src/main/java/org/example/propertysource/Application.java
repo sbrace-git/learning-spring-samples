@@ -20,6 +20,8 @@ public class Application {
             foo.bar = test
             foo.bar = test
             foo.tar = default foo.tar value
+            user language = zh
+            java version = 11.0.17
         */
 
     }
