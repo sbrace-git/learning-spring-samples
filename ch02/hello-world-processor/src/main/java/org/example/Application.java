@@ -12,6 +12,7 @@ public class Application {
 
         /*
 
+            BeanFactoryPostProcessorImpl postProcessBeanFactory
             Hello Construct
             Hello postProcessBeforeInitialization - 1
             Hello postProcessBeforeInitialization - 2
