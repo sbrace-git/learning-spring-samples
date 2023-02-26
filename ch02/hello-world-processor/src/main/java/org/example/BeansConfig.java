@@ -20,4 +20,8 @@ public class BeansConfig {
         return new HelloBeanPostProcessor2();
     }
 
+    @Bean
+    public static BeanFactoryPostProcessorImpl beanFactoryPostProcessorImpl() {
+        return new BeanFactoryPostProcessorImpl();
+    }
 }
