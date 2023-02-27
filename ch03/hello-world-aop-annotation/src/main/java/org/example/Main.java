@@ -11,6 +11,14 @@ public class Main {
         AnnotationConfigApplicationContext applicationContext =
                 new AnnotationConfigApplicationContext(Main.class);
         Hello hello = applicationContext.getBean(Hello.class);
-        System.out.println(hello.sayHello(new StringBuffer("world!")));
+        String s = hello.sayHello(new StringBuffer("world!"));
+        System.out.println(s);
+        /*
+             @Around start.
+             @AfterReturning Say something: world! Welcome to Spring!
+             @After after
+             @Around end. Total time: 3ms
+             Hello! world! Welcome to Spring!
+         */
     }
 }
