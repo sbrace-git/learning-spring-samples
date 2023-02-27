@@ -6,6 +6,8 @@ import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @Aspect
 @Component
 public class HelloAspect {
@@ -70,6 +72,30 @@ public class HelloAspect {
         } finally {
             long end = System.currentTimeMillis();
             System.out.println("@Around end. Total time: " + (end - start) + "ms - 1");
+        }
+    }
+
+    @DeclareParents(value = "org.example.*", defaultImpl = DefaultGoodBye.class)
+    private GoodBye goodBye;
+
+    private final AtomicInteger counter = new AtomicInteger(0);
+
+    @Order(2)
+    @Around(value = "execution(* sayHello(..)) && this(goodBye)", argNames = "proceedingJoinPoint,goodBye")
+    public String around2(ProceedingJoinPoint proceedingJoinPoint, GoodBye goodBye) {
+        long start = System.currentTimeMillis();
+        try {
+            System.out.println("@Around start. - 2");
+            return (String) proceedingJoinPoint.proceed(new Object[]{new StringBuffer(" around change!")});
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            return "error";
+        } finally {
+            long end = System.currentTimeMillis();
+            System.out.println("@Around end. Total time: " + (end - start) + "ms - 2");
+            System.out.println(goodBye.sayBye() + " @Around - 2");
+            int count = counter.addAndGet(1);
+            System.out.println("count = " + count);
         }
     }
 }

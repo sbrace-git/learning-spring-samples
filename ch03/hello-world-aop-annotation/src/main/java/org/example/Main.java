@@ -11,8 +11,8 @@ public class Main {
         AnnotationConfigApplicationContext applicationContext =
                 new AnnotationConfigApplicationContext(Main.class);
         Hello hello = applicationContext.getBean(Hello.class);
-        String s = hello.sayHello(new StringBuffer("world!"));
-        System.out.println(s);
+        System.out.println(hello.sayHello(new StringBuffer("world! A")));
+//        System.out.println(hello.sayHello(new StringBuffer("world! B")));
         /*
             @Around start.
             @Before - 1
