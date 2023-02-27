@@ -33,11 +33,18 @@ public class ApplicationTest {
     @Test
     @DisplayName("springHello是否为GoodBye类型")
     public void testIntroduction() {
+        // false
         assertFalse(hello instanceof SpringHello);
+        assertFalse(hello instanceof DefaultGoodBye);
+
+        // true
         assertTrue(hello instanceof Hello);
         assertTrue(hello instanceof GoodBye);
-        assertFalse(hello instanceof DefaultGoodBye);
-        assertTrue(hello instanceof GoodBye);
+
+        // equals
+        assertEquals("Hello! Test around change - 1! around change - 2! Bye! 1 Welcome to Spring! ",
+                hello.sayHello(new StringBuffer("Test")));
+        assertEquals("Bye! ", ((GoodBye) hello).sayBye());
     }
 
     @Test
