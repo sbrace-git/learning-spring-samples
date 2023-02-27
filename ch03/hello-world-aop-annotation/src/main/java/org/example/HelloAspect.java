@@ -79,7 +79,11 @@ public class HelloAspect {
     @DeclareParents(value = "org.example.*", defaultImpl = DefaultGoodBye.class)
     private GoodBye goodBye;
 
-    private final AtomicInteger counter = new AtomicInteger(0);
+    private AtomicInteger counter = new AtomicInteger(0);
+
+    public void resetCounter() {
+        this.counter.set(0);
+    }
 
     @Order(2)
     @Around(value = "execution(* sayHello(..)) && this(goodBye)", argNames = "proceedingJoinPoint,goodBye")
@@ -88,7 +92,10 @@ public class HelloAspect {
         try {
             StringBuffer arg = (StringBuffer) proceedingJoinPoint.getArgs()[0];
             System.out.println("@Around start. - 2");
-            return (String) proceedingJoinPoint.proceed(new Object[]{arg.append(" around change - 2!")});
+            return (String) proceedingJoinPoint.proceed(
+                    new Object[]{arg.append(" around change - 2! ")
+                            .append(goodBye.sayBye())
+                            .append(counter.addAndGet(1))});
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return "error";
@@ -96,8 +103,6 @@ public class HelloAspect {
             long end = System.currentTimeMillis();
             System.out.println("@Around end. Total time: " + (end - start) + "ms - 2");
             System.out.println(goodBye.sayBye() + " @Around - 2");
-            int count = counter.addAndGet(1);
-            System.out.println("count = " + count);
         }
     }
 }
