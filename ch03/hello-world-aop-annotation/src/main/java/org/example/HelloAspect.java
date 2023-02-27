@@ -76,7 +76,7 @@ public class HelloAspect {
         }
     }
 
-    @DeclareParents(value = "org.example.*", defaultImpl = DefaultGoodBye.class)
+    @DeclareParents(value = "org.example.Hello+", defaultImpl = DefaultGoodBye.class)
     private GoodBye goodBye;
 
     private AtomicInteger counter = new AtomicInteger(0);
