@@ -3,6 +3,7 @@ package org.example;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -14,9 +15,23 @@ public class HelloAspect {
 
     }
 
+    @Order(1)
     @Before(value = "pointCut(words)", argNames = "words")
-    public void addWords(StringBuffer words) {
+    public void addWords1(StringBuffer words) {
+        System.out.println("@Before - 1");
         words.append(" Welcome to Spring! ");
+    }
+
+    @Order(2)
+    @Before("target(org.example.Hello) && args(words)")
+    public void addWords2(StringBuffer words) {
+        System.out.println("@Before - 2");
+    }
+
+    @Order(3)
+    @Before("target(org.example.Hello)")
+    public void addWords3() {
+        System.out.println("@Before - 3");
     }
 
     @AfterReturning(value = "pointCut(words)", argNames = "words")

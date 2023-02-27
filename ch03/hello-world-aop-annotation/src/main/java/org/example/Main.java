@@ -14,11 +14,14 @@ public class Main {
         String s = hello.sayHello(new StringBuffer("world!"));
         System.out.println(s);
         /*
-             @Around start.
-             @AfterReturning Say something: world! Welcome to Spring!
-             @After after
-             @Around end. Total time: 3ms
-             Hello! world! Welcome to Spring!
+            @Around start.
+            @Before - 1
+            @Before - 2
+            @Before - 3
+            @AfterReturning Say something: world! Welcome to Spring!
+            @After after
+            @Around end. Total time: 5ms
+            Hello! world! Welcome to Spring!
          */
     }
 }
