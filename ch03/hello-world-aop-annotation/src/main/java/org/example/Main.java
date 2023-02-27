@@ -14,14 +14,19 @@ public class Main {
         System.out.println(hello.sayHello(new StringBuffer("world! A")));
 //        System.out.println(hello.sayHello(new StringBuffer("world! B")));
         /*
-            @Around start.
+            @Around start. - 1
+            @Around start. - 2
             @Before - 1
             @Before - 2
             @Before - 3
-            @AfterReturning Say something: world! Welcome to Spring!
-            @After after
-            @Around end. Total time: 5ms
-            Hello! world! Welcome to Spring!
+            @AfterReturning Say something: world! A around change - 1! around change - 2! Welcome to Spring!
+            @After after - 2
+            @After after - 1
+            @Around end. Total time: 5ms - 2
+            Bye!  @Around - 2
+            count = 1
+            @Around end. Total time: 17ms - 1
+            Hello! world! A around change - 1! around change - 2! Welcome to Spring!
          */
     }
 }

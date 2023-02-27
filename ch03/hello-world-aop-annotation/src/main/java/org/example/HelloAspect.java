@@ -64,8 +64,9 @@ public class HelloAspect {
     public String around1(ProceedingJoinPoint proceedingJoinPoint) {
         long start = System.currentTimeMillis();
         try {
+            StringBuffer arg = (StringBuffer) proceedingJoinPoint.getArgs()[0];
             System.out.println("@Around start. - 1");
-            return (String) proceedingJoinPoint.proceed(new Object[]{new StringBuffer(" around change!")});
+            return (String) proceedingJoinPoint.proceed(new Object[]{arg.append(" around change - 1!")});
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return "error";
@@ -85,8 +86,9 @@ public class HelloAspect {
     public String around2(ProceedingJoinPoint proceedingJoinPoint, GoodBye goodBye) {
         long start = System.currentTimeMillis();
         try {
+            StringBuffer arg = (StringBuffer) proceedingJoinPoint.getArgs()[0];
             System.out.println("@Around start. - 2");
-            return (String) proceedingJoinPoint.proceed(new Object[]{new StringBuffer(" around change!")});
+            return (String) proceedingJoinPoint.proceed(new Object[]{arg.append(" around change - 2!")});
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return "error";
