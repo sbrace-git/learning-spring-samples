@@ -15,7 +15,7 @@ public class HelloAspect {
 
     }
 
-    @Before("pointCut(words)")
+    @Before(value = "pointCut(words)", argNames = "words")
     public void addWords(StringBuffer words) {
         words.append(" Welcome to Spring! ");
     }
