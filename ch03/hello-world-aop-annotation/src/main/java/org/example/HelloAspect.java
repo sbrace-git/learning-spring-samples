@@ -45,23 +45,31 @@ public class HelloAspect {
         System.out.println("@AfterThrowing");
     }
 
+    @Order(1)
     @After(value = "pointCut(words)", argNames = "words")
-    public void after(StringBuffer words) {
-        System.out.println("@After after");
+    public void after1(StringBuffer words) {
+        System.out.println("@After after - 1");
     }
 
+    @Order(2)
+    @After(value = "pointCut(words) && this(bye)", argNames = "words,bye")
+    public void after2(StringBuffer words, GoodBye bye) {
+        System.out.println("@After after - 2");
+    }
+
+    @Order(1)
     @Around(value = "pointCut(StringBuffer)")
-    public Object around(ProceedingJoinPoint proceedingJoinPoint) {
+    public String around1(ProceedingJoinPoint proceedingJoinPoint) {
         long start = System.currentTimeMillis();
         try {
-            System.out.println("@Around start.");
-            return proceedingJoinPoint.proceed();
+            System.out.println("@Around start. - 1");
+            return (String) proceedingJoinPoint.proceed(new Object[]{new StringBuffer(" around change!")});
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             return "error";
         } finally {
             long end = System.currentTimeMillis();
-            System.out.println("@Around end. Total time: " + (end - start) + "ms");
+            System.out.println("@Around end. Total time: " + (end - start) + "ms - 1");
         }
     }
 }
