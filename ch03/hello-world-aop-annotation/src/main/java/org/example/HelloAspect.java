@@ -18,8 +18,8 @@ public class HelloAspect {
     }
 
     @Order(1)
-    @Before(value = "pointCut(words)", argNames = "words")
-    public void addWords1(StringBuffer words) {
+    @Before(value = "pointCut(words) && this(goodBye)", argNames = "words,goodBye")
+    public void addWords1(StringBuffer words,GoodBye goodBye) {
         System.out.println("@Before - 1");
         words.append(" Welcome to Spring! ");
     }
