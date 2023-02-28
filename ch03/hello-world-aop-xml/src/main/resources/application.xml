@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:config>
+        <aop:pointcut id="pointCut" expression="target(org.example.Hello) and args(words)"/>
+        <aop:aspect ref="helloAspect">
+            <aop:declare-parents types-matching="org.example.Hello+"
+                                 implement-interface="org.example.GoodBye"
+                                 default-impl="org.example.DefaultGoodBye"/>
+            <aop:around method="around1" pointcut="target(org.example.Hello) and args(StringBuffer)"/>
+            <aop:around method="around2" pointcut="execution(* sayHello(..)) and this(goodBye)"/>
+            <aop:before method="addWords1" arg-names="words,goodBye"
+                        pointcut="target(org.example.Hello) and args(words) and this(goodBye)"/>
+            <aop:before method="addWords2" arg-names="words" pointcut-ref="pointCut"/>
+            <aop:before method="addWords3" pointcut="target(org.example.Hello)"/>
+
+            <aop:after-returning method="printWords" pointcut-ref="pointCut"
+                                 arg-names="words,returningWords" returning="returningWords"/>
+            <aop:after-throwing method="afterThrowing" pointcut="target(org.example.Hello) and args(StringBuffer)"
+                                throwing="exception"/>
+            <aop:after method="after1" pointcut-ref="pointCut" arg-names="words"/>
+            <aop:after method="after2" pointcut="target(org.example.Hello) and args(words) and this(bye)"
+                       arg-names="words,bye"/>
+        </aop:aspect>
+    </aop:config>
+
+    <bean class="org.example.SpringHello"/>
+    <bean id="helloAspect" class="org.example.HelloAspect"/>
+
+</beans>
