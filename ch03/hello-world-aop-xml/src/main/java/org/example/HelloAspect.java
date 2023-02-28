@@ -7,10 +7,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class HelloAspect {
 
-    private void pointCut(StringBuffer words) {
-
-    }
-
     public void addWords1(StringBuffer words, GoodBye goodBye) {
         System.out.println("@Before - 1");
         words.append(" Welcome to Spring! ");

@@ -7,9 +7,13 @@
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop
         https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean class="org.example.SpringHello"/>
+    <bean id="helloAspect" class="org.example.HelloAspect"/>
+    <bean id="sayMethodInterceptor" class="org.example.SayMethodInterceptor"/>
 
     <aop:config>
         <aop:pointcut id="pointCut" expression="target(org.example.Hello) and args(words)"/>
+        <aop:advisor advice-ref="sayMethodInterceptor" pointcut="execution(* sayHello(..))"/>
         <aop:aspect ref="helloAspect">
             <aop:declare-parents types-matching="org.example.Hello+"
                                  implement-interface="org.example.GoodBye"
@@ -30,8 +34,5 @@
                        arg-names="words,bye"/>
         </aop:aspect>
     </aop:config>
-
-    <bean class="org.example.SpringHello"/>
-    <bean id="helloAspect" class="org.example.HelloAspect"/>
 
 </beans>
