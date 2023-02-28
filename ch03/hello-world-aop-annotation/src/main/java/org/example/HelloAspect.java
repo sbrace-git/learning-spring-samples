@@ -36,9 +36,10 @@ public class HelloAspect {
         System.out.println("@Before - 3");
     }
 
-    @AfterReturning(value = "pointCut(words)", argNames = "words")
-    public void printWords(StringBuffer words) {
-        System.out.println("@AfterReturning Say something: " + words);
+    @AfterReturning(value = "pointCut(words)", argNames = "words,returningWords", returning = "returningWords")
+    public void printWords(StringBuffer words, String returningWords) {
+        System.out.println("@AfterReturning param: " + words);
+        System.out.println("@AfterReturning returning: " + returningWords);
     }
 
     @AfterThrowing(value = "pointCut(StringBuffer)", throwing = "exception")

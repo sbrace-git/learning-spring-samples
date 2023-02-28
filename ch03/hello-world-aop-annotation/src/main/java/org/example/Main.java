@@ -19,12 +19,13 @@ public class Main {
             @Before - 1
             @Before - 2
             @Before - 3
-            @AfterReturning Say something: world! A around change - 1! around change - 2! Bye! 1 Welcome to Spring!
+            @AfterReturning param: world! A around change - 1! around change - 2! Bye! 1 Welcome to Spring!
+            @AfterReturning returning: Hello! world! A around change - 1! around change - 2! Bye! 1 Welcome to Spring!
             @After after - 2
             @After after - 1
-            @Around end. Total time: 5ms - 2
+            @Around end. Total time: 4ms - 2
             Bye!  @Around - 2
-            @Around end. Total time: 11ms - 1
+            @Around end. Total time: 9ms - 1
             Hello! world! A around change - 1! around change - 2! Bye! 1 Welcome to Spring!
          */
     }
