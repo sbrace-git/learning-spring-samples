@@ -6,7 +6,7 @@ management:
     web:
       base-path: /my-actuator
       exposure:
-        include: health,env,info,beans,shop
+        include: health,env,info,beans,shop,metrics
     enabled-by-default: false
   endpoint:
     health:
@@ -17,4 +17,6 @@ management:
     info:
       enabled: true
     beans:
+      enabled: true
+    metrics:
       enabled: true
