@@ -18,6 +18,7 @@ management:
       enabled: true
     env:
       enabled: true
+      additional-keys-to-sanitize: java.*,sun.*
   server:
     port: 8081
     base-path: /management
