@@ -2,11 +2,7 @@ management:
   info:
     defaults:
       enabled: false
-    git:
-      enabled: true
     env:
-      enabled: true
-    build:
       enabled: true
   endpoints:
     enabled-by-default: false
@@ -21,6 +17,7 @@ management:
     health:
       enabled: true
       show-details: when_authorized
+      show-components: always
     info:
       enabled: true
     beans:
