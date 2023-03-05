@@ -3,10 +3,21 @@ management:
     enabled-by-default: false
     web:
       exposure:
-        include: health,info
+        include: health,info,beans,env
+      base-path: /my-actuator
+    jmx:
+      exposure:
+        include: health
   endpoint:
     health:
       enabled: true
       show-details: always
     info:
       enabled: true
+    beans:
+      enabled: true
+    env:
+      enabled: true
+  server:
+    port: 8081
+    base-path: /management
