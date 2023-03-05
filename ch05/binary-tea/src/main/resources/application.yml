@@ -1,0 +1,20 @@
+management:
+  server:
+    base-path: /management
+    port: 8081
+  endpoints:
+    web:
+      base-path: /my-actuator
+      exposure:
+        include: health,env,info,beans
+    enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    env:
+      enabled: true
+    info:
+      enabled: true
+    beans:
+      enabled: true
