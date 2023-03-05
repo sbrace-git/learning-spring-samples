@@ -16,9 +16,14 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         logger.info("securityFilterChain");
         http.authorizeRequests()
+                // 保护 env 端点，登录后才可以访问
                 .requestMatchers(EndpointRequest.to("env")).authenticated()
-                .requestMatchers(EndpointRequest.toAnyEndpoint()).anonymous()
+                // beans 仅可以匿名访问，登录后不可以访问
+                .requestMatchers(EndpointRequest.to("beans")).anonymous()
+                // 其他端点是否登录都可以访问
+                .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
                 .and()
+                // 登录页面 http://localhost:8081/management/login
                 .formLogin();
         return http.build();
     }
