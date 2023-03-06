@@ -1,11 +1,16 @@
 package learning.spring.binarytea;
 
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.composite.CompositeMeterRegistry;
+import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import learning.spring.binarytea.metrics.SalesMetrics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -31,6 +36,14 @@ public class BinaryTeaApplication {
         int amount = random.nextInt(100);
         salesMetrics.makeNewOrder(amount);
         logger.info("Make an order of RMB {} yuan.", amount);
+    }
+
+    @Bean
+    public MeterRegistry meterRegistry() {
+        CompositeMeterRegistry compositeMeterRegistry = new CompositeMeterRegistry();
+        compositeMeterRegistry.add(new SimpleMeterRegistry());
+        compositeMeterRegistry.add(new LoggingMeterRegistry());
+        return compositeMeterRegistry;
     }
 
 
