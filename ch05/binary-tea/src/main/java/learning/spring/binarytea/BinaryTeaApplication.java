@@ -8,8 +8,10 @@ import learning.spring.binarytea.metrics.SalesMetrics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.Banner;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -21,7 +23,13 @@ import java.util.Random;
 public class BinaryTeaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BinaryTeaApplication.class, args);
+//        SpringApplication.run(BinaryTeaApplication.class, args);
+        new SpringApplicationBuilder()
+                .sources(BinaryTeaApplication.class)
+                .main(BinaryTeaApplication.class)
+                .bannerMode(Banner.Mode.OFF)
+                .web(WebApplicationType.SERVLET)
+                .run(args);
     }
 
     private final Random random = new Random();
