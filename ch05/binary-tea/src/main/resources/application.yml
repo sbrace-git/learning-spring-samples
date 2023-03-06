@@ -6,7 +6,7 @@ management:
     web:
       base-path: /my-actuator
       exposure:
-        include: health,env,info,beans,shop,metrics,prometheus
+        include: health,env,info,beans,shop,metrics,prometheus,shutdown
     enabled-by-default: false
   endpoint:
     health:
@@ -22,9 +22,16 @@ management:
       enabled: true
     prometheus:
       enabled: true
+    shutdown:
+      enabled: true
   metrics:
     distribution:
       percentiles:
         order.summary: 0.95
     tags:
       region: cn-shanghai-1
+server:
+  shutdown: graceful
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 10s

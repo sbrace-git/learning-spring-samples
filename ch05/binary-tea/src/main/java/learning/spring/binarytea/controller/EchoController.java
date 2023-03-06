@@ -28,4 +28,10 @@ public class EchoController {
         return restTemplate.getForObject("http://localhost:8080/echo?echo=hello", String.class);
     }
 
+    @GetMapping("/sleep")
+    public String sleep(String echo) throws InterruptedException {
+        Thread.sleep(8000L);
+        return echo(echo);
+    }
+
 }
