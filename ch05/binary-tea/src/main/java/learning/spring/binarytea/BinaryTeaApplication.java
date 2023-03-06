@@ -27,7 +27,7 @@ public class BinaryTeaApplication {
         new SpringApplicationBuilder()
                 .sources(BinaryTeaApplication.class)
                 .main(BinaryTeaApplication.class)
-                .bannerMode(Banner.Mode.OFF)
+                .bannerMode(Banner.Mode.LOG)
                 .web(WebApplicationType.SERVLET)
                 .run(args);
     }
