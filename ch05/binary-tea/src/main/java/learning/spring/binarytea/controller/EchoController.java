@@ -1,5 +1,6 @@
 package learning.spring.binarytea.controller;
 
+import io.micrometer.core.annotation.Timed;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EchoController {
 
     @GetMapping
+    @Timed(extraTags = {"region", "cn-shanghai-1"}, percentiles = 0.99D)
     public String echo(String echo) {
         return echo;
     }
