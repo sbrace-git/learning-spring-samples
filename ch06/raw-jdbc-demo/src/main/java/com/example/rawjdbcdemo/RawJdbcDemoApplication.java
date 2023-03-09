@@ -15,7 +15,7 @@ import java.sql.Statement;
 @SpringBootApplication
 public class RawJdbcDemoApplication {
 
-    public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) {
         SpringApplication.run(RawJdbcDemoApplication.class, args);
     }
 
