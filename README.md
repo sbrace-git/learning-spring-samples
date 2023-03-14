@@ -6,3 +6,4 @@ ISBN: 9787115609113
 - Java 11.0.17
 - Postman 10.10.8 [workspace](https://www.postman.com/sbrace-postman/workspace/learning-spring-samples/overview)
 - Maven 3.8.6
+- MySQL 8.0.31
