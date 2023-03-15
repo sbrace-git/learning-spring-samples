@@ -69,7 +69,26 @@ public class MenuRepositoryTest {
     }
 
     @Test
-    @Order(2)
+    @Order(3)
+    void testInsertItemWithNamedParameter() {
+        MenuItem item = MenuItem.builder()
+                .name("Go橙汁").size("中杯")
+                .price(BigDecimal.valueOf(12.00d))
+                .build();
+        assertEquals(1, menuRepository.insertItemWithNamedParameter(item));
+        assertNull(item.getId());
+        MenuItem queryItem = menuRepository.queryForItem(5L);
+        assertItem(queryItem, 5L, "Go橙汁", "中杯", BigDecimal.valueOf(12.00));
+
+        // fill id
+        assertEquals(1, menuRepository.insertItemAndFillIdWithNamedParameter(item));
+        assertNotNull(item.getId());
+        queryItem = menuRepository.queryForItem(item.getId());
+        assertItem(queryItem, 6L, "Go橙汁", "中杯", BigDecimal.valueOf(12.00));
+    }
+
+    @Test
+    @Order(4)
     void testDelete() {
         assertEquals(1, menuRepository.deleteItem(3L));
         assertEquals(1, menuRepository.deleteItem(2L));

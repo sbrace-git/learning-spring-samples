@@ -3,6 +3,8 @@ package learning.spring.binarytea.repository;
 import learning.spring.binarytea.model.MenuItem;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
@@ -14,10 +16,12 @@ import java.util.Objects;
 
 @Repository
 public class MenuRepository {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public MenuRepository(JdbcTemplate jdbcTemplate) {
+    public MenuRepository(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     public long countMenuItems() {
@@ -51,6 +55,17 @@ public class MenuRepository {
                 item.getPrice().multiply(BigDecimal.valueOf(100)).longValue());
     }
 
+    public int insertItemWithNamedParameter(MenuItem item) {
+        String sql = "insert into t_menu (name, size, price, create_time, update_time) values " +
+                "(:name, :size, :price, now(), now())";
+        MapSqlParameterSource sqlParameterSource = new MapSqlParameterSource();
+        sqlParameterSource.addValue("name", item.getName());
+        sqlParameterSource.addValue("size", item.getSize());
+        sqlParameterSource.addValue("price",
+                item.getPrice().multiply(BigDecimal.valueOf(100)).longValue());
+        return namedParameterJdbcTemplate.update(sql, sqlParameterSource);
+    }
+
     public int insertItemAndFillId(MenuItem item) {
         GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
 
@@ -66,6 +81,22 @@ public class MenuRepository {
             item.setId(Objects.requireNonNull(generatedKeyHolder.getKey()).longValue());
         }
 
+        return affected;
+    }
+
+    public int insertItemAndFillIdWithNamedParameter(MenuItem item) {
+        GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+        String sql = "insert into t_menu (name, size, price, create_time, update_time) values " +
+                "(:name, :size, :price, now(), now())";
+        MapSqlParameterSource sqlParameterSource = new MapSqlParameterSource();
+        sqlParameterSource.addValue("name", item.getName());
+        sqlParameterSource.addValue("size", item.getSize());
+        sqlParameterSource.addValue("price",
+                item.getPrice().multiply(BigDecimal.valueOf(100)).longValue());
+        int affected = namedParameterJdbcTemplate.update(sql, sqlParameterSource, generatedKeyHolder);
+        if (affected == 1) {
+            item.setId(Objects.requireNonNull(generatedKeyHolder.getKey()).longValue());
+        }
         return affected;
     }
 
