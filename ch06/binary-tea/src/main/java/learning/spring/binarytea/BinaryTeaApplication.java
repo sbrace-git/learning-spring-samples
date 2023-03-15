@@ -39,7 +39,7 @@ public class BinaryTeaApplication {
 
     private static final Logger logger = LoggerFactory.getLogger(BinaryTeaApplication.class);
 
-    @Scheduled(fixedRate = 5000L, initialDelay = 1000L)
+//    @Scheduled(fixedRate = 5000L, initialDelay = 1000L)
     public void periodicallyMakeAnOrder() {
         int amount = random.nextInt(100);
         salesMetrics.makeNewOrder(amount);
@@ -50,7 +50,7 @@ public class BinaryTeaApplication {
     public MeterRegistry meterRegistry() {
         CompositeMeterRegistry compositeMeterRegistry = new CompositeMeterRegistry();
         compositeMeterRegistry.add(new SimpleMeterRegistry());
-        compositeMeterRegistry.add(new LoggingMeterRegistry());
+//        compositeMeterRegistry.add(new LoggingMeterRegistry());
         return compositeMeterRegistry;
     }
 
