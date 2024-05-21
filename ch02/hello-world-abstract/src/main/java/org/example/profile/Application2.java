@@ -11,7 +11,10 @@ public class Application2 {
          * spring.profiles.active=dev
          * spring.profiles.active=prod
          */
-        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();annotationConfigApplicationContext.register(Application2.class);
+        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
+        annotationConfigApplicationContext.register(Application2.class);
+//        annotationConfigApplicationContext.getEnvironment().setActiveProfiles("dev");
+        annotationConfigApplicationContext.getEnvironment().setActiveProfiles("prod");
         annotationConfigApplicationContext.refresh();
         Hello hello = annotationConfigApplicationContext.getBean("hello-1", Hello.class);
         hello.hello();
